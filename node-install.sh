@@ -5,7 +5,10 @@ echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | 
 sudo apt-get update && sudo apt-get install -y mina-generate-keypair=1.3.0-9b0369c libjemalloc-dev
 #echo "set MINA VERSION https://docs.minaprotocol.com/en/getting-started "
 #read -p "mina-mainnet=: " minaversion
-echo "set public key key/my-wallet.pub if not set NEW KEYS WILL BE GENERATED!!! "
+echo
+echo
+echo
+echo "SET public key key/my-wallet.pub if not set NEW KEYS WILL BE GENERATED!!! "
 read -p "key/my-wallet: " walletpubkey
 
 if [ -z "$walletpubkey" ]; then
@@ -16,12 +19,12 @@ if [ -z "$walletpubkey" ]; then
   chmod 600 ~/keys/my-wallet
   else
    echo
-   echo "set private key ~/keys/my-wallet https://docs.minaprotocol.com/en/using-mina/keypair "
+   echo "SET private key ~/keys/my-wallet https://docs.minaprotocol.com/en/using-mina/keypair "
    read -p "~/keys/my-wallet: " walletkey
 fi
 echo
 echo
-echo "set MINA KEY PASSWORD AGAIN"
+echo "set MINA KEY PASSWORD (AGAIN)"
    read -p "MINA KEY PASSWORD AGAIN: " minakeypass
 echo
 echo
@@ -78,9 +81,15 @@ echo
 echo
 sudo service mina-bp-stats-sidecar status | cat
 echo
+echo USEFULL COMMANDS:
+echo
 echo 'systemctl --user status mina'
+echo
 echo 'service mina-bp-stats-sidecar status'
+echo
 echo 'watch -n 10 mina client status'
+echo
 echo 'journalctl --user-unit mina -n 1000 -f'
+echo
 echo 'sudo journalctl -o cat -f -u mina-bp-stats-sidecar.service'
 
