@@ -29,8 +29,8 @@ LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
 EXTRA_FLAGS=" --block-producer-key /home/minadmin/keys/my-wallet --uptime-submitter-key /home/minadmin/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"$coinbasereceiver"' "' > .mina-env
 
-mkdir ~/key
-chmod 700 ~/key
+mkdir ~/keys
+chmod 700 ~/keys
 echo "$walletkey" > ~/keys/my-wallet
 chmod 600 ~/key/my-wallet
 echo "$walletpubkey" > ~/keys/my-wallet.pub
