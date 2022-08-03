@@ -25,7 +25,7 @@ echo "set MINA KEY PASSWORD AGAIN"
    read -p "MINA KEY PASSWORD AGAIN: " minakeypass
 echo
 echo
-echo "set COINBASE RECEIVER ADDRESS "
+echo "set COINBASE RECEIVER ADDRESS if not set NEW KEYS WILL BE GENERATED!!!"
 read -p "COINBASE RECEIVER ADDRESS: " coinbasereceiver
 if [ -z "$coinbasereceiver" ]; then
   echo 'coinbasereceiver is not set'
@@ -36,6 +36,7 @@ if [ -z "$coinbasereceiver" ]; then
   mina-generate-keypair --privkey-path ~/coinrec/my-wallet
   chmod 600 ~/coinrec/my-wallet
   coinbasereceiver=$(<~/coinrec/my-wallet.pub)
+  echo "$coinbasereceiver"
   else
    echo
    echo "set COINBASE RECEIVER ADDRESS"
@@ -54,7 +55,7 @@ UPTIME_PRIVKEY_PASS="'"$minakeypass"'"
 MINA_PRIVKEY_PASS="'"$minakeypass"'"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
-EXTRA_FLAGS=" --block-producer-key /home/minadmin/keys/my-wallet --uptime-submitter-key /home/minadmin/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"${!coinbasereceiver}"' "' > .mina-env
+EXTRA_FLAGS=" --block-producer-key /home/minadmin/keys/my-wallet --uptime-submitter-key /home/minadmin/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"$coinbasereceiver"' "' > .mina-env
 
 if [ -z "$walletpubkey" ]; then
       echo
@@ -84,8 +85,8 @@ echo
 echo
 sudo service mina-bp-stats-sidecar status | cat
 echo
-echo
-echo
+echo 'systemctl --user status mina'
+echo 'service mina-bp-stats-sidecar status'
 echo 'watch -n 10 mina client status'
 echo 'journalctl --user-unit mina -n 1000 -f'
 echo 'sudo journalctl -o cat -f -u mina-bp-stats-sidecar.service'
