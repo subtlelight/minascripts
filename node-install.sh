@@ -32,7 +32,7 @@ EXTRA_FLAGS=" --block-producer-key /home/minadmin/keys/my-wallet --uptime-submit
 mkdir ~/keys
 chmod 700 ~/keys
 echo "$walletkey" > ~/keys/my-wallet
-chmod 600 ~/key/my-wallet
+chmod 600 ~/keys/my-wallet
 echo "$walletpubkey" > ~/keys/my-wallet.pub
 
 sudo systemctl daemon-reload && systemctl --user daemon-reload && systemctl --user stop mina && systemctl --user restart mina
