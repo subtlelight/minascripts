@@ -1,6 +1,8 @@
 #!/bin/bash
 
 echo
+echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
+sudo apt-get update && sudo apt-get install -y mina-generate-keypair=1.3.0-9b0369c libjemalloc-dev
 #echo "set MINA VERSION https://docs.minaprotocol.com/en/getting-started "
 #read -p "mina-mainnet=: " minaversion
 echo "set public key key/my-wallet.pub if not set NEW KEYS WILL BE GENERATED!!! "
@@ -8,8 +10,6 @@ read -p "key/my-wallet: " walletpubkey
 
 if [ -z "$walletpubkey" ]; then
   echo '$walletpubkey is not set GENERATING NEW '
-  echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
-  sudo apt-get update && sudo apt-get install -y mina-generate-keypair=1.3.0-9b0369c libjemalloc-dev
   mkdir ~/keys
   chmod 700 ~/keys
   mina-generate-keypair --privkey-path ~/keys/my-wallet
@@ -29,19 +29,12 @@ echo "set COINBASE RECEIVER ADDRESS if not set NEW KEYS WILL BE GENERATED!!!"
 read -p "COINBASE RECEIVER ADDRESS: " coinbasereceiver
 if [ -z "$coinbasereceiver" ]; then
   echo 'coinbasereceiver is not set'
-  echo "deb [trusted=yes] http://packages.o1test.net $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/mina.list
-  sudo apt-get update && sudo apt-get install -y mina-generate-keypair=1.3.0-9b0369c libjemalloc-dev
   mkdir ~/coinrec
   chmod 700 ~/coinrec
   mina-generate-keypair --privkey-path ~/coinrec/my-wallet
   chmod 600 ~/coinrec/my-wallet
   coinbasereceiver=$(<~/coinrec/my-wallet.pub)
   echo "$coinbasereceiver"
-  else
-   echo
-   echo "set COINBASE RECEIVER ADDRESS"
-   read -p "COINBASE RECEIVER ADDRESS: " coinbasereceiver
-   echo
 fi
 
 username="whoami"
