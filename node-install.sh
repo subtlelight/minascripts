@@ -1,8 +1,8 @@
 #!/bin/bash
 
 echo
-echo "set MINA VERSION https://docs.minaprotocol.com/en/getting-started "
-read -p "mina-mainnet=: " minaversion
+#echo "set MINA VERSION https://docs.minaprotocol.com/en/getting-started "
+#read -p "mina-mainnet=: " minaversion
 echo
 echo "set MINA KEY PASSWORD"
 read -p "MINA KEY PASSWORD: " minakeypass
@@ -19,7 +19,8 @@ echo
 username="whoami"
 
 sudo echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list
-sudo apt-get update && sudo apt-get install -y mina-mainnet="$minaversion"
+#sudo apt-get update && sudo apt-get install -y mina-mainnet="$minaversion"
+sudo apt-get update && sudo apt-get install -y mina-mainnet
 
 echo 'CODA_PRIVKEY_PASS="'"$minakeypass"'"
 UPTIME_PRIVKEY_PASS="'"$minakeypass"'"
