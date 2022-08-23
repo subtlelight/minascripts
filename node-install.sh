@@ -63,7 +63,7 @@ if [ -z "$walletpubkey" ]; then
      echo "$walletpubkey" > ~/keys/my-wallet.pub
 fi
 
-sudo systemctl daemon-reload && systemctl --user daemon-reload && systemctl --user stop mina && systemctl --user restart mina
+systemctl --user daemon-reload && systemctl --user start mina && systemctl --user enable mina && sudo loginctl enable-linger
 
 sudo apt-get install -y mina-bp-stats-sidecar
 sudo bash -c "echo ' {
