@@ -51,7 +51,7 @@ UPTIME_PRIVKEY_PASS="'"$minakeypass"'"
 MINA_PRIVKEY_PASS="'"$minakeypass"'"
 LOG_LEVEL=Info
 FILE_LOG_LEVEL=Debug
-EXTRA_FLAGS=" --block-producer-key /home/minadmin/keys/my-wallet --uptime-submitter-key /home/minadmin/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"$coinbasereceiver"' "' > .mina-env
+EXTRA_FLAGS=" --block-producer-key /home/'"${username}"'/keys/my-wallet --uptime-submitter-key /home/'"${username}"'/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"$coinbasereceiver"' "' > .mina-env
 
 if [ -z "$walletpubkey" ]; then
       echo
@@ -71,7 +71,7 @@ sudo bash -c "echo ' {
   \"nodeURL\": \"http://127.0.0.1:3095\"
 } ' > /etc/mina-sidecar.json"
 
-sudo systemctl daemon-reload && systemctl --user daemon-reload && sudo service mina-bp-stats-sidecar restart
+sudo systemctl enable mina-bp-stats-sidecar && sudo systemctl daemon-reload && sudo service mina-bp-stats-sidecar restart
 echo
 echo
 echo
