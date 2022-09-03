@@ -42,26 +42,6 @@ fi
 
 username="whoami"
 
-sudo echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list
-#sudo apt-get update && sudo apt-get install -y mina-mainnet="$minaversion"
-sudo apt-get update && sudo apt-get install -y mina-mainnet
-
-echo 'CODA_PRIVKEY_PASS="'"$minakeypass"'"
-UPTIME_PRIVKEY_PASS="'"$minakeypass"'"
-MINA_PRIVKEY_PASS="'"$minakeypass"'"
-LOG_LEVEL=Info
-FILE_LOG_LEVEL=Debug
-EXTRA_FLAGS=" --block-producer-key /home/'"${username}"'/keys/my-wallet --uptime-submitter-key /home/'"${username}"'/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"$coinbasereceiver"' "' > .mina-env
-
-if [ -z "$walletpubkey" ]; then
-      echo
-   else
-     mkdir ~/keys
-     chmod 700 ~/keys
-     echo "$walletkey" > ~/keys/my-wallet
-     chmod 600 ~/keys/my-wallet
-     echo "$walletpubkey" > ~/keys/my-wallet.pub
-fi
 
 YELLOW="\033[33m"
 GREEN="\033[32m"
@@ -94,6 +74,29 @@ echo "---------------"
 echo -e "$GREEN Libraries successfully installed.\033[0m"
 echo "---------------"
 
+
+
+
+sudo echo "deb [trusted=yes] http://packages.o1test.net stretch stable" | sudo tee /etc/apt/sources.list.d/mina.list
+#sudo apt-get update && sudo apt-get install -y mina-mainnet="$minaversion"
+sudo apt-get update && sudo apt-get install -y mina-mainnet
+
+echo 'CODA_PRIVKEY_PASS="'"$minakeypass"'"
+UPTIME_PRIVKEY_PASS="'"$minakeypass"'"
+MINA_PRIVKEY_PASS="'"$minakeypass"'"
+LOG_LEVEL=Info
+FILE_LOG_LEVEL=Debug
+EXTRA_FLAGS=" --block-producer-key /home/'"${username}"'/keys/my-wallet --uptime-submitter-key /home/'"${username}"'/keys/my-wallet --uptime-url https://uptime-backend.minaprotocol.com/v1/submit --limited-graphql-port 3095 --minimum-block-reward 684 --coinbase-receiver '"$coinbasereceiver"' "' > .mina-env
+
+if [ -z "$walletpubkey" ]; then
+      echo
+   else
+     mkdir ~/keys
+     chmod 700 ~/keys
+     echo "$walletkey" > ~/keys/my-wallet
+     chmod 600 ~/keys/my-wallet
+     echo "$walletpubkey" > ~/keys/my-wallet.pub
+fi
 
 systemctl --user daemon-reload && systemctl --user start mina && systemctl --user enable mina && sudo loginctl enable-linger
 
