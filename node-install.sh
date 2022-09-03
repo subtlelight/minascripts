@@ -40,8 +40,7 @@ if [ -z "$coinbasereceiver" ]; then
   echo "$coinbasereceiver"
 fi
 
-username="whoami"
-
+username=$(whoami)
 
 YELLOW="\033[33m"
 GREEN="\033[32m"
