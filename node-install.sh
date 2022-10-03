@@ -8,7 +8,7 @@ sudo apt-get update && sudo apt-get install -y mina-generate-keypair=1.3.0-9b036
 echo
 echo
 echo
-echo "SET public key key/my-wallet.pub if not set NEW KEYS WILL BE GENERATED!!! "
+echo "SET public key keys/my-wallet.pub if not set NEW KEYS WILL BE GENERATED!!! "
 read -p "key/my-wallet.pub : " walletpubkey
 
 if [ -z "$walletpubkey" ]; then
@@ -24,8 +24,8 @@ if [ -z "$walletpubkey" ]; then
 fi
 echo
 echo
-echo "set MINA KEY PASSWORD (AGAIN)"
-   read -p "MINA KEY PASSWORD AGAIN: " minakeypass
+echo "set MINA KEY PASSWORD"
+   read -p "MINA KEY PASSWORD: " minakeypass
 echo
 echo
 echo "set COINBASE RECEIVER ADDRESS if not set NEW KEYS WILL BE GENERATED!!!"
@@ -41,6 +41,9 @@ if [ -z "$coinbasereceiver" ]; then
 fi
 
 username=$(whoami)
+
+
+
 
 YELLOW="\033[33m"
 GREEN="\033[32m"
@@ -117,13 +120,14 @@ sudo service mina-bp-stats-sidecar status | cat
 echo
 echo USEFULL COMMANDS:
 echo
-echo 'systemctl --user status mina'
+echo -e "$GREEN systemctl --user status mina \033[0m"
 echo
-echo 'service mina-bp-stats-sidecar status'
+echo -e "$GREEN service mina-bp-stats-sidecar status \033[0m"
 echo
-echo 'watch -n 10 mina client status'
+echo -e "$GREEN watch -n 10 mina client status \033[0m"
 echo
-echo 'journalctl --user-unit mina -n 1000 -f'
+echo -e "$GREEN journalctl --user-unit mina -n 1000 -f \033[0m"
 echo
-echo 'sudo journalctl -o cat -f -u mina-bp-stats-sidecar.service'
-
+echo -e "$GREEN sudo journalctl -o cat -f -u mina-bp-stats-sidecar.service \033[0m"
+echo
+echo -e "$GREEN wget https://raw.githubusercontent.com/subtlelight/minascripts/main/watch.sh -O watch.sh && watch -n 60 bash watch.sh \033[0m"
