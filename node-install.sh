@@ -118,16 +118,16 @@ echo
 echo
 sudo service mina-bp-stats-sidecar status | cat
 echo
-echo USEFULL COMMANDS:
+echo -e "$YELLOW USEFULL COMMANDS: \033[0m"
 echo
-echo -e "$GREEN systemctl --user status mina \033[0m"
+echo -e "$YELLOW systemctl --user status mina \033[0m"
 echo
-echo -e "$GREEN service mina-bp-stats-sidecar status \033[0m"
+echo -e "$YELLOW service mina-bp-stats-sidecar status \033[0m"
 echo
-echo -e "$GREEN watch -n 10 mina client status \033[0m"
+echo -e "$YELLOW watch -n 10 mina client status \033[0m"
 echo
-echo -e "$GREEN journalctl --user-unit mina -n 1000 -f \033[0m"
+echo -e "$YELLOW journalctl --user-unit mina -n 1000 -f \033[0m"
 echo
-echo -e "$GREEN sudo journalctl -o cat -f -u mina-bp-stats-sidecar.service \033[0m"
+echo -e "$YELLOW sudo journalctl -o cat -f -u mina-bp-stats-sidecar.service \033[0m"
 echo
-echo -e "$GREEN wget https://raw.githubusercontent.com/subtlelight/minascripts/main/watch.sh -O watch.sh && watch -n 60 bash watch.sh \033[0m"
+echo -e "$YELLOW wget https://raw.githubusercontent.com/subtlelight/minascripts/main/watch.sh -O watch.sh && watch -n 60 bash watch.sh \033[0m"
