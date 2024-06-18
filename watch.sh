@@ -5,6 +5,6 @@ status=$(/usr/local/bin/mina client status | grep -e 'Local uptime' -e 'Sync sta
 
 echo "ip4: $ip4"
 echo
-echo "Status:"$'\n'$'\n'"$status"$'\n'$'"
+echo "Status:"$'\n'$'\n'"$status"$'\n
 #echo
 echo "Uptime service - sent : $(journalctl --user -u mina -S "today" | grep 'Sent block with state' | wc -l), failed: $(journalctl --user -u mina -S "today" | grep 'After 8 attempts, failed' | wc -l), Errors : $(journalctl --user -u mina -S "today" | grep 'uptime' | grep 'Error' | wc -l)"
